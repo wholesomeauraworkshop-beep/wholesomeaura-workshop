@@ -1,6 +1,7 @@
 // config/products.js
 // 集中管理所有数字产品
-// 修改产品、价格、PDF 只需改这个文件
+// 修改产品、价格、附件只需改这个文件
+// 附件支持 PDF / PNG / JPG 等格式
 
 const path = require("path");
 const fs = require("fs");
@@ -14,9 +15,9 @@ module.exports = {
       description: "That sudden road rage? It could be Toxoplasma gondii — a parasite from your cat.",
       price: 199,        // 单位：分（USD），1.99 USD = 199
       currency: "usd",
-      // PDF 文件路径（放在 public/products/ 目录下）
-      pdfFile: "healthy-hazards.pdf",
-      pdfPath: null,     // 运行时自动计算
+      // 产品附件（放在 public/products/ 目录下，支持 PDF/PNG/JPG 等）
+      file: "healthy-hazards.pdf",
+      filePath: null,    // 运行时自动计算
       // Stripe Price ID（在 Stripe Dashboard 创建产品后填入）
       stripePriceId: "",
     },
@@ -27,55 +28,53 @@ module.exports = {
       description: "Questioning accepted truths, seeking hidden origins — from ancient symbols to Earth's deep past.",
       price: 199,
       currency: "usd",
-      pdfFile: "tai-chi-diagram.pdf",
-      pdfPath: null,
+      file: "tai-chi-diagram.pdf",
+      filePath: null,
       stripePriceId: "",
     },
   },
 
-  // 免费产品（不发邮件，直接下载）
+  // 免费产品
   freeProducts: {
     "stewed-duck-recipe": {
       id: "stewed-duck-recipe",
       name: "Stewed Duck with Astragalus and Black Fungus",
       nameZh: "黄芪黑木耳炖鸭",
-      pdfFile: "stewed-duck-recipe.pdf",
+      file: "stewed-duck-recipe.pdf",
     },
   },
 
-  // 运行时初始化：计算 PDF 绝对路径
+  // 运行时初始化：计算文件绝对路径
   init(baseDir) {
     const productsDir = path.join(baseDir, "public", "products");
     Object.keys(this.products).forEach(key => {
       const p = this.products[key];
-      p.pdfPath = path.join(productsDir, p.pdfFile);
+      p.filePath = path.join(productsDir, p.file);
     });
     Object.keys(this.freeProducts).forEach(key => {
       const p = this.freeProducts[key];
-      p.pdfPath = path.join(productsDir, p.pdfFile);
+      p.filePath = path.join(productsDir, p.file);
     });
   },
 
-  // Resend 邮件模板（带 PDF 附件）
+  // Resend 邮件模板（带附件）
   email: {
     from: "WholesomeAura <onboarding@resend.dev>",  // Resend 验证域名后改为品牌邮箱
     subject: "Your WholesomeAuraWorkshop Digital Product",
     subjectZh: "您的 WholesomeAuraWorkshop 数字产品",
 
-    // 邮件正文
     bodyTemplate(productName, isZh) {
       if (isZh) {
-        return `你好，\n\n感谢你的购买！你的数字产品「${productName}」的 PDF 已附在邮件中，请查收。\n\n祝好，\nAura\nWholesomeAuraWorkshop`;
+        return `你好，\n\n感谢你的购买！你的数字产品「${productName}」已附在邮件中，请查收。\n\n祝好，\nAura\nWholesomeAuraWorkshop`;
       }
-      return `Hi there,\n\nThank you for your purchase! Your digital product "${productName}" is attached to this email as a PDF. Enjoy!\n\nBest,\nAura\nWholesomeAuraWorkshop`;
+      return `Hi there,\n\nThank you for your purchase! Your digital product "${productName}" is attached to this email. Enjoy!\n\nBest,\nAura\nWholesomeAuraWorkshop`;
     },
 
-    // 免费食谱邮件正文
     freeBodyTemplate(productName, isZh) {
       if (isZh) {
-        return `你好，\n\n这是你下载的免费食谱「${productName}」，PDF 已附在邮件中。祝你烹饪愉快！\n\n祝好，\nAura\nWholesomeAuraWorkshop`;
+        return `你好，\n\n这是你下载的免费食谱「${productName}」，已附在邮件中。祝你烹饪愉快！\n\n祝好，\nAura\nWholesomeAuraWorkshop`;
       }
-      return `Hi there,\n\nHere's your free recipe "${productName}". The PDF is attached. Happy cooking!\n\nBest,\nAura\nWholesomeAuraWorkshop`;
+      return `Hi there,\n\nHere's your free recipe "${productName}". The file is attached. Happy cooking!\n\nBest,\nAura\nWholesomeAuraWorkshop`;
     },
   },
 };

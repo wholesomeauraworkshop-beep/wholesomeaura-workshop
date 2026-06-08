@@ -1,6 +1,7 @@
 // /api/stripe-webhook.js
 // Vercel Serverless Function — 接收 Stripe Webhook 事件
-// 支付成功后触发 Resend 发送带 PDF 附件的邮件
+// 支付成功后触发 Resend 发送带产品文件附件的邮件
+// 支持 PDF / PNG / JPG 等任意文件格式
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { Resend } = require("resend");
@@ -16,13 +17,13 @@ productsConfig.init(__dirname);
 const resend = new Resend(process.env.RESEND_API_KEY);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-// 读取 PDF 文件并转为 base64
-function readPdfAttachment(pdfPath, filename) {
-  if (!fs.existsSync(pdfPath)) {
-    console.error("PDF not found:", pdfPath);
+// 读取产品文件并返回 Resend 附件格式
+function readAttachment(filePath, filename) {
+  if (!fs.existsSync(filePath)) {
+    console.error("File not found:", filePath);
     return null;
   }
-  const content = fs.readFileSync(pdfPath);
+  const content = fs.readFileSync(filePath);
   return {
     filename: filename,
     content: content,
@@ -38,14 +39,12 @@ module.exports = async (req, res) => {
   let event;
 
   try {
-    // 验证 Webhook 签名
     event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
   } catch (err) {
     console.error("Webhook signature verification failed:", err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // 只处理支付成功事件
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
     const { productId, lang } = session.metadata || {};
@@ -65,10 +64,8 @@ module.exports = async (req, res) => {
     const isZh = lang === "zh";
     const productName = isZh && product.nameZh ? product.nameZh : product.name;
 
-    // 读取 PDF 附件
-    const attachment = readPdfAttachment(product.pdfPath, product.pdfFile);
+    const attachment = readAttachment(product.filePath, product.file);
 
-    // 构建邮件参数
     const emailParams = {
       from: emailConfig.from,
       to: customerEmail,
@@ -76,14 +73,12 @@ module.exports = async (req, res) => {
       text: emailConfig.bodyTemplate(productName, isZh),
     };
 
-    // 如果有 PDF 附件，加入邮件
     if (attachment) {
       emailParams.attachments = [attachment];
     } else {
-      console.warn("PDF attachment missing for:", productId);
+      console.warn("Attachment missing for:", productId);
     }
 
-    // 发送邮件
     try {
       await resend.emails.send(emailParams);
       console.log("Email sent to:", customerEmail, "| Product:", productId);
