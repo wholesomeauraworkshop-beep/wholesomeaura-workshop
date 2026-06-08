@@ -16,7 +16,7 @@ module.exports = {
       price: 199,        // 单位：分（USD），1.99 USD = 199
       currency: "usd",
       // 产品附件（放在 public/products/ 目录下，支持 PDF/PNG/JPG 等）
-      file: "healthy-hazards.pdf",
+      file: "Why Your Cats Might Tweak Your Brain and Behavior.pdf",
       filePath: null,    // 运行时自动计算
       // Stripe Price ID（在 Stripe Dashboard 创建产品后填入）
       stripePriceId: "",
@@ -28,7 +28,7 @@ module.exports = {
       description: "Questioning accepted truths, seeking hidden origins — from ancient symbols to Earth's deep past.",
       price: 199,
       currency: "usd",
-      file: "tai-chi-diagram.pdf",
+      file: "The Origin and Evolution of the Tai Chi Diagram.pdf",
       filePath: null,
       stripePriceId: "",
     },
@@ -40,7 +40,7 @@ module.exports = {
       id: "stewed-duck-recipe",
       name: "Stewed Duck with Astragalus and Black Fungus",
       nameZh: "黄芪黑木耳炖鸭",
-      file: "stewed-duck-recipe.pdf",
+      file: "Stewed Duck with Astragalus and Black Fungus.png",
     },
   },
 
