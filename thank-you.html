@@ -1,0 +1,78 @@
+<!-- Thank You Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — WholesomeAuraWorkshop</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fafaf7;
+    color: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  .card {
+    max-width: 480px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 3.5rem 2.5rem;
+    box-shadow: 0 8px 40px rgba(71,51,47,0.08);
+  }
+  .checkmark {
+    width: 64px; height: 64px;
+    background: #9bbf8b;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem; color: #fff;
+  }
+  h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2rem; font-weight: 400; margin-bottom: 0.75rem; }
+  p { color: #4c4c4c; line-height: 1.7; margin-bottom: 2rem; font-size: 0.95rem; }
+  a.btn {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.9rem 2.5rem;
+    background: #1a1a1a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.25s;
+  }
+  a.btn:hover { background: #333; }
+  .note { font-size: 0.78rem; color: #888; margin-top: 1.5rem; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@0,400;0,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="card">
+  <div class="checkmark">✓</div>
+  <h1 id="title">Thank You!</h1>
+  <p id="message">Your payment was successful. Check your email for access to your digital product.</p>
+  <a href="/" class="btn" id="backBtn">Back to Home</a>
+  <p class="note" id="note">A receipt has been sent to your email.</p>
+</div>
+<script>
+  // Simple language detection from query param
+  const params = new URLSearchParams(location.search);
+  const lang = params.get('lang') || 'en';
+  if (lang === 'zh') {
+    document.getElementById('title').textContent = '感谢购买！';
+    document.getElementById('message').textContent = '支付成功！请查收邮件获取数字产品访问链接。';
+    document.getElementById('backBtn').textContent = '返回首页';
+    document.getElementById('note').textContent = '收据已发送至您的邮箱。';
+    document.documentElement.lang = 'zh';
+  }
+</script>
+</body>
+</html>
