@@ -50,24 +50,21 @@ npx vercel --prod
 
 ---
 
-## Step 4：更新产品 Canva 链接
+## Step 4：准备产品 PDF
 
-修改 `config/products.js` 里的 `successUrl`，填入你的 Canva 数字产品页面链接：
+将 PDF 文件放到 `public/products/` 目录下：
 
-```js
-"healthy-hazards": {
-  // ...
-  successUrl: "https://www.canva.com/design/xxx/view",  // ← 换成真实链接
-},
-"tai-chi-diagram": {
-  // ...
-  successUrl: "https://www.canva.com/design/xxx/view",  // ← 换成真实链接
-},
+```
+public/products/
+  healthy-hazards.pdf      ← Healthy Hazards 产品 PDF
+  tai-chi-diagram.pdf      ← Tai Chi Diagram 产品 PDF
+  stewed-duck-recipe.pdf   ← 免费食谱 PDF
 ```
 
----
+邮件配置在 `config/products.js`，付款后自动附带 PDF 附件发送。
 
-## 后续添加新产品（简单！）
+---
+## Step 5：后续添加新产品（简单！）
 
 只需修改 `config/products.js`，加一段：
 
@@ -79,9 +76,10 @@ npx vercel --prod
   description: "Product description...",
   price: 299,          // $2.99
   currency: "usd",
-  successUrl: "https://your-canva-link.com/new-product",
-  stripePriceId: "",    // 在 Stripe Dashboard 创建后填入
+  pdfFile: "new-product.pdf",    // PDF 文件名（放 public/products/ 下）
+  pdfPath: null,                 // 自动计算，不用改
+  stripePriceId: "",
 },
 ```
 
-然后在 `index.html` 里复制一个 `.product-row` 区块，改掉里面的文案和 `data-category` 即可。
+然后在 `index.html` 里复制一个 `.product-row` 区块，改掉文案和 `data-category`，push 后 Vercel 自动部署。

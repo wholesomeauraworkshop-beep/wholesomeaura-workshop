@@ -2,7 +2,8 @@
 // Vercel Serverless Function — 创建 Stripe Checkout Session
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const products = require("../config/products").products;
+const productsConfig = require("../config/products");
+const products = productsConfig.products;
 
 module.exports = async (req, res) => {
   // 只允许 POST

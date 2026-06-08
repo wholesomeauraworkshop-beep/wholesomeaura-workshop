@@ -58,7 +58,7 @@
 <div class="card">
   <div class="checkmark">✓</div>
   <h1 id="title">Thank You!</h1>
-  <p id="message">Your payment was successful. Check your email for access to your digital product.</p>
+  <p id="message">Your payment was successful. The PDF has been sent to your email. Please check your inbox (and spam folder).</p>
   <a href="/" class="btn" id="backBtn">Back to Home</a>
   <p class="note" id="note">A receipt has been sent to your email.</p>
 </div>
@@ -68,7 +68,7 @@
   const lang = params.get('lang') || 'en';
   if (lang === 'zh') {
     document.getElementById('title').textContent = '感谢购买！';
-    document.getElementById('message').textContent = '支付成功！请查收邮件获取数字产品访问链接。';
+    document.getElementById('message').textContent = '支付成功！PDF 已发送至您的邮箱，请查收（也请检查垃圾邮件箱）。';
     document.getElementById('backBtn').textContent = '返回首页';
     document.getElementById('note').textContent = '收据已发送至您的邮箱。';
     document.documentElement.lang = 'zh';
