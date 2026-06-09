@@ -896,8 +896,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
             <div class="price-bar-label">Price</div>
             <div class="price-bar-amount">$1.99<span class="price-bar-currency">USD</span></div>
           </div>
-          <!-- REPLACE href with your Stripe Payment Link from https://dashboard.stripe.com/payment-links -->
-          <a href="#" class="price-bar-cta" target="_blank" rel="noopener" title="Stripe Payment Link needed">Buy Now &rarr;</a>
+          <a href="#" class="price-bar-cta" id="buy-healthy-hazards" data-product="healthy-hazards">Buy Now &rarr;</a>
         </div>
       </div>
       <div class="product-row-image">
@@ -917,8 +916,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
             <div class="price-bar-label">Price</div>
             <div class="price-bar-amount">$1.99<span class="price-bar-currency">USD</span></div>
           </div>
-          <!-- REPLACE href with your Stripe Payment Link from https://dashboard.stripe.com/payment-links -->
-          <a href="#" class="price-bar-cta" target="_blank" rel="noopener" title="Stripe Payment Link needed">Buy Now &rarr;</a>
+          <a href="#" class="price-bar-cta" id="buy-tai-chi-diagram" data-product="tai-chi-diagram">Buy Now &rarr;</a>
         </div>
       </div>
       <div class="product-row-image">
@@ -1093,14 +1091,54 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Smooth scroll for anchor links
+// Smooth scroll for anchor links (exclude Buy Now buttons)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
+    if (this.classList.contains('price-bar-cta')) return;
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  });
+});
+
+// API base: auto-detect local vs deployed
+const API_BASE = (window.location.protocol === 'file:' || window.location.hostname === 'localhost')
+  ? 'https://wholesomeauraworkshop.com'
+  : '';
+
+// Buy Now — call /api/create-checkout
+async function handleBuyNow(productId, event) {
+  event.preventDefault();
+  const btn = event.currentTarget;
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = 'Processing...';
+  btn.style.pointerEvents = 'none';
+
+  try {
+    const resp = await fetch(API_BASE + '/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ productId }),
+    });
+    const data = await resp.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Unknown error');
+    }
+  } catch (err) {
+    alert('Payment request failed. Please try again.');
+    btn.innerHTML = originalHTML;
+    btn.style.pointerEvents = '';
+  }
+}
+
+// Attach Buy Now handlers
+document.querySelectorAll('.price-bar-cta[data-product]').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    handleBuyNow(this.dataset.product, e);
   });
 });
 
@@ -1110,7 +1148,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   const email = this.querySelector('input[type="email"]').value;
   const name = this.querySelector('input[type="text"]').value;
   const message = this.querySelector('textarea').value;
-  const mailto = `mailto:wholesomeauraworkshop@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')')}`;
+  const mailto = `mailto:wholesomeauraworkshop@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\n\u2014 ' + name + ' (' + email + ')')}`;
   window.location.href = mailto;
   this.reset();
 });

@@ -31,6 +31,16 @@ function readAttachment(filePath, filename) {
   };
 }
 
+// 读取原始请求体（Vercel 默认会解析 JSON，但 Stripe 签名验证需要原始字符串）
+async function readRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+    req.on("error", reject);
+  });
+}
+
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
@@ -40,7 +50,8 @@ module.exports = async (req, res) => {
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+    const rawBody = await readRawBody(req);
+    event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
   } catch (err) {
     console.error("Webhook signature verification failed:", err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
@@ -48,7 +59,7 @@ module.exports = async (req, res) => {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
-    const { productId, lang } = session.metadata || {};
+    const { productId } = session.metadata || {};
     const customerEmail = session.customer_details?.email;
 
     if (!customerEmail) {
@@ -62,16 +73,13 @@ module.exports = async (req, res) => {
       return res.status(200).json({ received: true });
     }
 
-    const isZh = lang === "zh";
-    const productName = isZh && product.nameZh ? product.nameZh : product.name;
-
     const attachment = readAttachment(product.filePath, product.file);
 
     const emailParams = {
       from: emailConfig.from,
       to: customerEmail,
-      subject: isZh ? emailConfig.subjectZh : emailConfig.subject,
-      text: emailConfig.bodyTemplate(productName, isZh),
+      subject: emailConfig.subject,
+      text: emailConfig.bodyTemplate(product.name),
     };
 
     if (attachment) {
