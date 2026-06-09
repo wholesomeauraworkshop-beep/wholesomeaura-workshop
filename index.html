@@ -16,13 +16,12 @@
    RESET & BASE
    ========================================= */
 *, *::before, *::after {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 :root {
-  /* Spanish Mediterranean Vintage Palette */
   --black: #1a1a1a;
   --dark: #333333;
   --mid: #4c4c4c;
@@ -43,7 +42,7 @@
   --border: #e8e4df;
   --border-light: #f0ece7;
   --shadow: 0 2px 40px rgba(0,0,0,0.06);
-  --shadow-warm: 0 4px 30px rgba(71, 51, 47, 0.07);
+  --shadow-warm: 0 4px 30px rgba(71,51,47,0.07);
 
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -60,7 +59,7 @@ body {
   font-family: var(--font-sans);
   color: var(--dark);
   background: var(--bg);
-  line-height:1.7;
+  line-height: 1.7;
   font-weight: 300;
   letter-spacing: 0.01em;
 }
@@ -247,25 +246,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 .nav-links a:hover::after { width: 100%; }
 .nav-links a:hover { color: var(--black); }
 
-/* Language Switcher */
-.lang-switch {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--mid);
-  background: transparent;
-  border: 1px solid var(--pale);
-  padding: 0.3rem 0.8rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-}
-.lang-switch:hover {
-  border-color: var(--black);
-  color: var(--black);
-}
-
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -320,7 +300,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   overflow: hidden;
 }
 
-
 /* =========================================
    ABOUT
    ========================================= */
@@ -334,13 +313,13 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 .about-image {
   aspect-ratio: 4/5;
   background: var(--bg-warm);
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 8px 40px rgba(71, 51, 47, 0.1);
+  box-shadow: 0 8px 40px rgba(71,51,47,0.1);
 }
 
 .about-text .stat-row {
@@ -369,186 +348,10 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 }
 
 /* =========================================
-   SHOP / PRODUCT ROW (Editorial Style)
+   SHOP / PRODUCT ROW
    ========================================= */
 .shop-section {
   background: var(--bg);
-}
-
-/* Shop filter tabs */
-.shop-filter-bar {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 4rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0;
-}
-.shop-filter-tab {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--light);
-  background: none;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  position: relative;
-  transition: color 0.25s ease;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-}
-.shop-filter-tab:hover { color: var(--black); }
-.shop-filter-tab.active {
-  color: var(--black);
-  border-bottom-color: var(--accent-deep);
-}
-
-/* Product badge */
-.product-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 0.3rem 0.75rem;
-  border-radius: 100px;
-  margin-bottom: 0.75rem;
-  background: var(--bg-warm);
-  color: var(--accent-deep);
-  border: 1px solid var(--border);
-}
-.product-badge.badge-popular {
-  background: rgba(74, 124, 150, 0.1);
-  color: var(--accent-vintage-blue);
-  border-color: rgba(74, 124, 150, 0.25);
-}
-.product-badge.badge-new {
-  background: rgba(155, 191, 139, 0.15);
-  color: #5a8a4e;
-  border-color: rgba(155, 191, 139, 0.35);
-}
-.product-badge.badge-free {
-  background: rgba(155, 191, 139, 0.2);
-  color: #4a7a3e;
-  border-color: rgba(155, 191, 139, 0.4);
-}
-
-/* Coming soon grid */
-.coming-soon-section {
-  margin-top: 5rem;
-  padding-top: 4rem;
-  border-top: 1px solid var(--border);
-}
-.coming-soon-label {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--light);
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.coming-soon-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-.coming-soon-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-.coming-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 2rem 1.75rem;
-  background: var(--white);
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.coming-card:hover {
-  border-color: var(--accent-light);
-  box-shadow: var(--shadow-warm);
-}
-.coming-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-light));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.coming-card:hover::before { opacity: 1; }
-.coming-card-tag {
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--accent-vintage-blue);
-  margin-bottom: 1rem;
-}
-.coming-card-title {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: var(--black);
-  line-height: 1.35;
-  margin-bottom: 0.75rem;
-}
-.coming-card-desc {
-  font-size: 0.82rem;
-  color: var(--mid);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-.coming-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.coming-card-price {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--accent-deep);
-}
-.notify-btn {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--mid);
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.notify-btn:hover, .notify-btn.notified {
-  background: var(--accent-deep);
-  border-color: var(--accent-deep);
-  color: var(--white);
-}
-@media (max-width: 1024px) {
-  .coming-soon-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 768px) {
-  .shop-filter-tab { padding: 0.6rem 1rem; font-size: 0.65rem; }
 }
 
 .product-row {
@@ -596,23 +399,23 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 
 .product-row-image {
   aspect-ratio: 4/3;
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(71, 51, 47, 0.1);
+  box-shadow: 0 8px 40px rgba(71,51,47,0.1);
   position: relative;
 }
 .product-row-image::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, transparent 70%, rgba(71, 51, 47, 0.08));
+  background: linear-gradient(to bottom, transparent 70%, rgba(71,51,47,0.08));
   pointer-events: none;
 }
 
 /* Price bar */
 .price-bar {
   background: var(--accent-vintage-blue);
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   padding: 1.5rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -656,18 +459,44 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   color: var(--accent-deep);
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
+  text-decoration: none;
 }
 .price-bar-cta:hover {
   background: var(--bg-beige);
   color: var(--accent-deep);
   transform: translateY(-2px);
 }
-.price-bar-cta svg {
-  width: 14px;
-  height: 14px;
+
+/* Product badges */
+.product-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  margin-bottom: 0.75rem;
+  background: var(--bg-warm);
+  color: var(--accent-deep);
+  border: 1px solid var(--border);
+}
+.product-badge.badge-popular {
+  background: rgba(74,124,150,0.1);
+  color: var(--accent-vintage-blue);
+  border-color: rgba(74,124,150,0.25);
+}
+.product-badge.badge-free {
+  background: rgba(155,191,139,0.2);
+  color: #4a7a3e;
+  border-color: rgba(155,191,139,0.4);
 }
 
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -683,6 +512,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   color: var(--white);
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -706,7 +536,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
    ========================================= */
 .featured-banner {
   background: linear-gradient(135deg, var(--bg-beige) 0%, var(--bg-terracotta) 100%);
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
   padding: 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -716,15 +546,14 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   overflow: hidden;
 }
 
-
 .featured-image {
   aspect-ratio: 3/2;
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(71, 51, 47, 0.12);
+  box-shadow: 0 8px 40px rgba(71,51,47,0.12);
 }
 
 .featured-content h2 {
@@ -822,6 +651,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   justify-content: center;
   transition: all 0.3s ease;
   background: var(--white);
+  text-decoration: none;
 }
 
 .social-link:hover {
@@ -876,11 +706,9 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .product-row {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -888,19 +716,16 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   .product-row:nth-child(even) .product-row-image {
     order: -1;
   }
-
   .featured-banner {
     grid-template-columns: 1fr;
     padding: 3rem 2rem;
     gap: 2rem;
-    border-radius: var(--radius-md);
+    border-radius: 8px;
   }
-
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-
   .hero-texture { width: 35%; }
 }
 
@@ -908,11 +733,9 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   .container { padding: 0 1.5rem; }
   .section { padding: 5rem 0; }
   .section-sm { padding: 3rem 0; }
-
   .grid-2, .grid-3 {
     grid-template-columns: 1fr;
   }
-
   .product-row {
     gap: 1.5rem;
     margin-bottom: 3rem;
@@ -921,40 +744,33 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   .product-row-image {
     order: -1;
   }
-
   .price-bar {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
     padding: 1.25rem;
   }
-
   .nav-links {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(250, 250, 247, 0.98);
+    background: rgba(250,250,247,0.98);
     backdrop-filter: blur(12px);
     flex-direction: column;
     padding: 2rem;
     gap: 1.5rem;
     border-bottom: 1px solid var(--border);
   }
-
   .nav-links.active {
     display: flex;
   }
-
   .mobile-menu-btn {
     display: block;
   }
-
   .hero-texture { display: none; }
-
   .featured-banner { padding: 2rem 1.5rem; border-radius: 12px; }
-
   .footer-inner { flex-direction: column; text-align: center; }
 }
 
@@ -990,16 +806,15 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
      ========================================= -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">WholesomeAuraWorkshop</a>
+    <a href="#home" class="nav-logo">WholesomeAuraWorkshop</a>
     <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about" data-en="About" data-zh="关于我">About</a></li>
-      <li><a href="#shop" data-en="Shop" data-zh="商店">Shop</a></li>
-      <li><a href="#philosophy" data-en="Philosophy" data-zh="理念">Philosophy</a></li>
-      <li><a href="#contact" data-en="Contact" data-zh="联系">Contact</a></li>
-      <li><button class="lang-switch" id="langSwitch">中文</button></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -1011,14 +826,14 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   <div class="hero-texture"></div>
   <div class="container">
     <div class="hero-content">
-      <p class="eyebrow animate" data-en="WholesomeAuraWorkshop" data-zh="WholesomeAuraWorkshop">WholesomeAuraWorkshop</p>
+      <p class="eyebrow animate">WholesomeAuraWorkshop</p>
       <h1 class="animate animate-delay-1">
-        <span data-en="Observe." data-zh="观察。">Observe.</span><br>
-        <span data-en="Think." data-zh="思考。">Think.</span><br>
-        <span data-en="Tell." data-zh="讲述。">Tell.</span>
+        Observe.<br>
+        Think.<br>
+        Tell.
       </h1>
-      <p class="tagline animate animate-delay-2" data-en="Stay Curious." data-zh="保持好奇。">Stay Curious.</p>
-      <a href="#shop" class="btn btn-outline animate animate-delay-3" data-en="Explore Work" data-zh="浏览作品">Explore Work</a>
+      <p class="tagline animate animate-delay-2">Stay Curious.</p>
+      <a href="#shop" class="btn btn-outline animate animate-delay-3">Explore Work</a>
     </div>
   </div>
 </section>
@@ -1033,27 +848,27 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
         <img src="images/avatar.png" alt="Aura Wong" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="about-text">
-        <p class="eyebrow" data-en="About" data-zh="关于我">About</p>
-        <h2 data-en="From finance to healing. From hustle to harmony." data-zh="从金融到疗愈，从奔波到和谐。">From finance to healing. From hustle to harmony.</h2>
+        <p class="eyebrow">About</p>
+        <h2>From finance to healing.<br>From hustle to harmony.</h2>
         <div class="divider"></div>
         <p class="body-large">
-          <span data-en="Over a decade in the financial industry&mdash;as an investment banking executive in Singapore and a corporate banking executive in China&mdash;analyzing risks, chasing returns, and navigating the high-stakes world of capital markets." data-zh="在金融行业耕耘十余年——曾在新加坡从事投资银行工作、在中国从事企业银行工作——分析风险、追逐回报，在资本市场的激烈竞争中前行。">Over a decade in the financial industry&mdash;as an investment banking executive in Singapore and a corporate banking executive in China&mdash;analyzing risks, chasing returns, and navigating the high-stakes world of capital markets.</span>
+          Over a decade in the financial industry&mdash;as an investment banking executive in Singapore and a corporate banking executive in China&mdash;analyzing risks, chasing returns, and navigating the high-stakes world of capital markets.
         </p>
         <p class="body-large" style="margin-top:1rem;">
-          <span data-en="A personal health journey led me to Traditional Chinese Medicine, where I discovered a deeper way of understanding the body, mind, and the world around us. Now an undergraduate student of TCM, I write about health, wellness, and the questions that keep me curious." data-zh="一段个人健康之旅引领我走向中医，在那里我发现了一种更深层的方式去理解身体、心灵以及我们周围的世界。如今作为一名中医学生，我书写关于健康、养生以及那些让我保持好奇的问题。">A personal health journey led me to Traditional Chinese Medicine, where I discovered a deeper way of understanding the body, mind, and the world around us. Now an undergraduate student of TCM, I write about health, wellness, and the questions that keep me curious.</span>
+          A personal health journey led me to Traditional Chinese Medicine, where I discovered a deeper way of understanding the body, mind, and the world around us. Now an undergraduate student of TCM, I write about health, wellness, and the questions that keep me curious.
         </p>
         <div class="stat-row">
           <div class="stat">
             <div class="stat-number">10+</div>
-            <div class="stat-label" data-en="Years in Finance" data-zh="金融从业年限">Years in Finance</div>
+            <div class="stat-label">Years in Finance</div>
           </div>
           <div class="stat">
             <div class="stat-number">2</div>
-            <div class="stat-label" data-en="Countries" data-zh="国家">Countries</div>
+            <div class="stat-label">Countries</div>
           </div>
           <div class="stat">
-            <div class="stat-number" data-en="TCM" data-zh="中医">TCM</div>
-            <div class="stat-label" data-en="Now Studying" data-zh="在读专业">Now Studying</div>
+            <div class="stat-number">TCM</div>
+            <div class="stat-label">Now Studying</div>
           </div>
         </div>
       </div>
@@ -1066,30 +881,23 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
      ========================================= -->
 <section class="section shop-section" id="shop">
   <div class="container">
-    <p class="eyebrow" data-en="Shop" data-zh="商店">Shop</p>
-    <h2 style="margin-bottom:2.5rem;" data-en="Digital Products" data-zh="数字产品">Digital Products</h2>
+    <p class="eyebrow">Shop</p>
+    <h2 style="margin-bottom:2.5rem;">Digital Products</h2>
 
-    <!-- Filter tabs -->
-    <div class="shop-filter-bar" id="shopFilterBar">
-      <button class="shop-filter-tab active" data-filter="all" data-en="All" data-zh="全部">All</button>
-      <button class="shop-filter-tab" data-filter="health" data-en="Healthy Hazards" data-zh="健康危害">Healthy Hazards</button>
-      <button class="shop-filter-tab" data-filter="brainwaves" data-en="Brainwaves" data-zh="脑波">Brainwaves</button>
-      <button class="shop-filter-tab" data-filter="recipes" data-en="Healthy Receipts" data-zh="健康食谱">Healthy Receipts</button>
-    </div>
-
-    <!-- Product 1 -->
-    <div class="product-row" data-category="health">
+    <!-- Product 1: Health Hazards -->
+    <div class="product-row">
       <div class="product-row-content">
-        <span class="product-badge badge-popular">⭐ Popular</span>
-        <div class="product-row-meta" data-en="Healthy Hazards" data-zh="健康危害">Healthy Hazards</div>
-        <h3 class="product-row-title" data-en="Why Your Cats Might Tweak Your Brain And Behavior?" data-zh="为什么你的猫可能会影响你的大脑和行为？">Why Your Cats Might Tweak Your Brain And Behavior?</h3>
-        <p class="product-row-desc" data-en="That sudden road rage? It could be Toxoplasma gondii — a parasite from your cat. It alters human behavior, increasing impulsivity and aggression behind the wheel." data-zh="突然的路怒症？可能是弓形虫——一种来自你家猫咪的寄生虫。它改变人类行为，增加驾驶中的冲动性和攻击性。">That sudden road rage? It could be Toxoplasma gondii — a parasite from your cat. It alters human behavior, increasing impulsivity and aggression behind the wheel.</p>
+        <span class="product-badge badge-popular">&#9895; Popular</span>
+        <div class="product-row-meta">Health Hazards</div>
+        <h3 class="product-row-title">Why Your Cats Might Tweak Your Brain And Behavior?</h3>
+        <p class="product-row-desc">That sudden road rage? It could be Toxoplasma gondii &mdash; a parasite from your cat. It alters human behavior, increasing impulsivity and aggression behind the wheel.</p>
         <div class="price-bar">
           <div>
-            <div class="price-bar-label" data-en="Price" data-zh="价格">Price</div>
+            <div class="price-bar-label">Price</div>
             <div class="price-bar-amount">$1.99<span class="price-bar-currency">USD</span></div>
           </div>
-          <a href="#" class="price-bar-cta" id="buy-btn-1" data-en="Buy Now →" data-zh="立即购买 →">Buy Now →</a>
+          <!-- REPLACE href with your Stripe Payment Link from https://dashboard.stripe.com/payment-links -->
+          <a href="#" class="price-bar-cta" target="_blank" rel="noopener" title="Stripe Payment Link needed">Buy Now &rarr;</a>
         </div>
       </div>
       <div class="product-row-image">
@@ -1097,19 +905,20 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
       </div>
     </div>
 
-    <!-- Product 2 -->
-    <div class="product-row" data-category="brainwaves">
+    <!-- Product 2: Tai Chi Diagram -->
+    <div class="product-row">
       <div class="product-row-content">
-        <span class="product-badge badge-new">✦ New</span>
-        <div class="product-row-meta" data-en="Brainwaves" data-zh="脑波">Brainwaves</div>
-        <h3 class="product-row-title" data-en="The Origin And Evolution Of The Tai Chi Diagram" data-zh="太极图的起源与演变">The Origin And Evolution Of The Tai Chi Diagram</h3>
-        <p class="product-row-desc" data-en="Questioning accepted truths, seeking hidden origins — from ancient symbols to Earth's deep past — drives us to imagine bold, unconventional explanations for our world." data-zh="质疑公认的真理，寻找隐藏的起源——从远古符号到地球的深层过去——驱使我们为世界想像出大胆、非常规的解释。">Questioning accepted truths, seeking hidden origins — from ancient symbols to Earth's deep past — drives us to imagine bold, unconventional explanations for our world.</p>
+        <span class="product-badge badge-new">&#10022; New</span>
+        <div class="product-row-meta">Brainwaves</div>
+        <h3 class="product-row-title">The Origin And Evolution Of The Tai Chi Diagram</h3>
+        <p class="product-row-desc">Questioning accepted truths, seeking hidden origins &mdash; from ancient symbols to Earth's deep past &mdash; drives us to imagine bold, unconventional explanations for our world.</p>
         <div class="price-bar">
           <div>
-            <div class="price-bar-label" data-en="Price" data-zh="价格">Price</div>
+            <div class="price-bar-label">Price</div>
             <div class="price-bar-amount">$1.99<span class="price-bar-currency">USD</span></div>
           </div>
-          <a href="#" class="price-bar-cta" id="buy-btn-2" data-en="Buy Now →" data-zh="立即购买 →">Buy Now →</a>
+          <!-- REPLACE href with your Stripe Payment Link from https://dashboard.stripe.com/payment-links -->
+          <a href="#" class="price-bar-cta" target="_blank" rel="noopener" title="Stripe Payment Link needed">Buy Now &rarr;</a>
         </div>
       </div>
       <div class="product-row-image">
@@ -1117,19 +926,19 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
       </div>
     </div>
 
-    <!-- Product 3 -->
-    <div class="product-row" data-category="recipes">
+    <!-- Product 3: Free Recipe -->
+    <div class="product-row">
       <div class="product-row-content">
-        <span class="product-badge badge-free">♡ Free</span>
-        <div class="product-row-meta" data-en="Healthy Receipts" data-zh="健康食谱">Healthy Receipts</div>
-        <h3 class="product-row-title" data-en="Stewed Duck with Astragalus and Black Fungus" data-zh="黄芪黑木耳炖鸭">Stewed Duck with Astragalus and Black Fungus</h3>
-        <p class="product-row-desc" data-en="Try this light summer stew combining duck, astragalus, and black fungus. Nourishing and refreshing with gentle ginger and salt touch." data-zh="试试这道清淡的夏季炖汤，融合鸭肉、黄芪和黑木耳。滋补清爽，佐以温和的姜盐点缀。">Try this light summer stew combining duck, astragalus, and black fungus. Nourishing and refreshing with gentle ginger and salt touch.</p>
+        <span class="product-badge badge-free">&#9825; Free</span>
+        <div class="product-row-meta">Healthy Recipes</div>
+        <h3 class="product-row-title">Stewed Duck with Astragalus and Black Fungus</h3>
+        <p class="product-row-desc">Try this light summer stew combining duck, astragalus, and black fungus. Nourishing and refreshing with gentle ginger and salt touch.</p>
         <div class="price-bar" style="background: var(--accent-avocado);">
           <div>
-            <div class="price-bar-label" data-en="Price" data-zh="价格">Price</div>
-            <div class="price-bar-amount" data-en="Free" data-zh="免费">Free</div>
+            <div class="price-bar-label">Price</div>
+            <div class="price-bar-amount">Free</div>
           </div>
-          <a href="#recipe" class="price-bar-cta" data-en="View Recipe →" data-zh="查看食谱 →">View Recipe →</a>
+          <a href="#recipe" class="price-bar-cta">View Recipe &rarr;</a>
         </div>
       </div>
       <div class="product-row-image">
@@ -1150,15 +959,15 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
         <img src="images/product-recipe.png" alt="Lotus Flower" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="featured-content">
-        <p class="eyebrow" data-en="Featured Recipe" data-zh="精选食谱">Featured Recipe</p>
-        <h2 data-en="Stewed Duck with Astragalus and Black Fungus" data-zh="黄芪黑木耳炖鸭">Stewed Duck with Astragalus and Black Fungus</h2>
+        <p class="eyebrow">Featured Recipe</p>
+        <h2>Stewed Duck with Astragalus and Black Fungus</h2>
         <div class="recipe-preview">
-          <span data-en="Duck &bull; Astragalus &bull; Black Fungus<br>Finished with a ginger-salt touch" data-zh="鸭 &bull; 黄芪 &bull; 黑豆<br>姜盐点睛">Duck &bull; Astragalus &bull; Black Fungus<br>
-          Finished with a ginger-salt touch</span>
+          Duck &bull; Astragalus &bull; Black Fungus<br>
+          Finished with a ginger-salt touch
         </div>
-        <p class="body-large" style="margin-bottom:1.5rem;" data-en="Try this light summer stew combining duck, astragalus, and black fungus. Nourishing and refreshing with gentle ginger and salt touch." data-zh="试试这道清淡的夏季炖汤，融合鸭肉、黄芪和黑木耳。滋补清爽，佐以温和的姜盐点缀。">Try this light summer stew combining duck, astragalus, and black fungus. Nourishing and refreshing with gentle ginger and salt touch.</p>
+        <p class="body-large" style="margin-bottom:1.5rem;">Try this light summer stew combining duck, astragalus, and black fungus. Nourishing and refreshing with gentle ginger and salt touch.</p>
         <p style="color:var(--light); font-size:0.85rem;">
-          <span data-en="Full recipe delivered to your inbox. Reach out at " data-zh="完整食谱将发送至您的收件箱。请联系 ">Full recipe delivered to your inbox. Reach out at </span><a href="mailto:wholesomeauraworkshop@gmail.com" style="color:var(--accent);">wholesomeauraworkshop@gmail.com</a>
+          Full recipe delivered to your inbox. Reach out at <a href="mailto:wholesomeauraworkshop@gmail.com" style="color:var(--accent);">wholesomeauraworkshop@gmail.com</a>
         </p>
       </div>
     </div>
@@ -1171,12 +980,12 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 <section class="section" id="philosophy" style="background: linear-gradient(180deg, var(--bg-beige) 0%, var(--bg-terracotta) 100%);">
   <div class="container">
     <div class="philosophy-block">
-      <p class="eyebrow" data-en="My Philosophy" data-zh="我的理念">My Philosophy</p>
+      <p class="eyebrow">My Philosophy</p>
       <p class="philosophy-quote">
-        &ldquo;<span data-en="Stay curious. Find beauty in the unexpected." data-zh="保持好奇，在意外中发现美。">Stay curious. Find beauty in the unexpected.</span>&rdquo;
+        &ldquo;Stay curious. Find beauty in the unexpected.&rdquo;
       </p>
       <p class="philosophy-text">
-        <span data-en="Explore fearlessly. Experience deeply. Be aware of the beauty of life — in the ordinary and the extraordinary, in ancient wisdom and emerging science. This is not a brand. It is a way of seeing." data-zh="无畏地探索，深刻地体验。感知生命之美——在平凡与非凡之中，在古代智慧与新兴科学之间。这不是一个品牌，这是一种看待世界的方式。">Explore fearlessly. Experience deeply. Be aware of the beauty of life — in the ordinary and the extraordinary, in ancient wisdom and emerging science. This is not a brand. It is a way of seeing.</span>
+        Explore fearlessly. Experience deeply. Be aware of the beauty of life &mdash; in the ordinary and the extraordinary, in ancient wisdom and emerging science. This is not a brand. It is a way of seeing.
       </p>
     </div>
   </div>
@@ -1187,21 +996,21 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
      ========================================= -->
 <section class="section" id="contact">
   <div class="container">
-    <p class="eyebrow" data-en="Get in Touch" data-zh="联系我">Get in Touch</p>
-    <h2 style="margin-bottom:3rem;" data-en="Contact" data-zh="联系方式">Contact</h2>
+    <p class="eyebrow">Get in Touch</p>
+    <h2 style="margin-bottom:3rem;">Contact</h2>
 
     <div class="contact-grid">
       <div class="contact-info">
         <div class="contact-item">
-          <span class="contact-label" data-en="Email" data-zh="邮箱">Email</span>
+          <span class="contact-label">Email</span>
           <span class="contact-value">WholesomeAuraWorkshop@gmail.com</span>
         </div>
         <div class="contact-item">
-          <span class="contact-label" data-en="Portfolio Overview" data-zh="作品集概览">Portfolio Overview</span>
+          <span class="contact-label">Portfolio Overview</span>
           <span class="contact-value">wholesomeauraworkshop.my.canva.site</span>
         </div>
         <div class="contact-item">
-          <span class="contact-label" data-en="Company" data-zh="公司">Company</span>
+          <span class="contact-label">Company</span>
           <span class="contact-value">FOKIA PTE. LTD.</span>
         </div>
         <div class="social-links">
@@ -1213,7 +1022,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
           </a>
           <a href="https://www.youtube.com/@AuraWong-i4n" class="social-link" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24">
-              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29.94 29.94 0 0 0 1 12a29.94 29.94 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29.94 29.94 0 0 0 23 12a29.94 29.94 0 0 0-.46-5.58z"/>
+              <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29.94 29.94 0 001 12a29.94 29.94 0 00.46 5.58 2.78 2.78 0 001.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-2A29.94 29.94 0 0023 12a29.94 29.94 0 00-.46-5.58z"/>
               <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
             </svg>
           </a>
@@ -1221,12 +1030,12 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
             <svg viewBox="0 0 24 24">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <circle cx="12" cy="12" r="5" fill="white"/>
-              <circle cx="17.5" cy="6.5" r="1.5" fill="White"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
             </svg>
           </a>
           <a href="https://www.tiktok.com/@wholesomeaurawork" class="social-link" aria-label="TikTok" title="TikTok" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24">
-              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21 1.64.06 3.57.07 5.36z"/>
             </svg>
           </a>
         </div>
@@ -1234,10 +1043,10 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 
       <div>
         <form id="contactForm" style="display:flex;flex-direction:column;gap:1.25rem;">
-          <input type="text" placeholder="Your Name" data-en-placeholder="Your Name" data-zh-placeholder="您的姓名" required style="font-family:var(--font-sans);font-size:0.9rem;padding:0.9rem 1rem;border:1px solid var(--border);background:var(--white);color:var(--black);outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'">
-          <input type="email" placeholder="Your Email" data-en-placeholder="Your Email" data-zh-placeholder="您的邮箱" required style="font-family:var(--font-sans);font-size:0.9rem;padding:0.9rem 1rem;border:1px solid var(--border);background:var(--white);color:var(--black);outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'">
-          <textarea placeholder="Your Message" data-en-placeholder="Your Message" data-zh-placeholder="您的留言" rows="4" style="font-family:var(--font-sans);font-size:0.9rem;padding:0.9rem 1rem;border:1px solid var(--border);background:var(--white);color:var(--black);resize:vertical;outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'"></textarea>
-          <button type="submit" class="btn" style="align-self:flex-start;" data-en="Send Message" data-zh="发送消息">Send Message</button>
+          <input type="text" placeholder="Your Name" required style="font-family:var(--font-sans);font-size:0.9rem;padding:0.9rem 1rem;border:1px solid var(--border);background:var(--white);color:var(--black);outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="email" placeholder="Your Email" required style="font-family:var(--font-sans);font-size:0.9rem;padding:0.9rem 1rem;border:1px solid var(--border);background:var(--white);color:var(--black);outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'">
+          <textarea placeholder="Your Message" rows="4" style="font-family:var(--font-sans);font-size:0.9rem;padding:0.9rem 1rem;border:1px solid var(--border);background:var(--white);color:var(--black);resize:vertical;outline:none;transition:border-color 0.3s ease;" onfocus="this.style.borderColor='var(--black)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+          <button type="submit" class="btn" style="align-self:flex-start;">Send Message</button>
         </form>
       </div>
     </div>
@@ -1260,36 +1069,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
      SCRIPTS
      ========================================= -->
 <script>
-// Language switching
-let currentLang = 'en';
-
-function switchLanguage(lang) {
-  currentLang = lang;
-  document.documentElement.lang = lang;
-
-  // Update all elements with data-en and data-zh
-  document.querySelectorAll('[data-en][data-zh]').forEach(el => {
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-      const placeholder = el.getAttribute('data-' + lang + '-placeholder');
-      if (placeholder) el.placeholder = placeholder;
-    } else {
-      el.innerHTML = el.getAttribute('data-' + lang);
-    }
-  });
-
-  // Update lang switch button text
-  const langBtn = document.getElementById('langSwitch');
-  langBtn.textContent = lang === 'en' ? '中文' : 'EN';
-
-  // Save preference
-  localStorage.setItem('wholesomeaura-lang', lang);
-}
-
-// Language switch button
-document.getElementById('langSwitch').addEventListener('click', () => {
-  switchLanguage(currentLang === 'en' ? 'zh' : 'en');
-});
-
 // Mobile menu toggle
 const menuBtn = document.getElementById('menuBtn');
 const navLinks = document.getElementById('navLinks');
@@ -1335,71 +1114,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   window.location.href = mailto;
   this.reset();
 });
-
-// Load saved language preference
-const savedLang = localStorage.getItem('wholesomeaura-lang');
-if (savedLang) {
-  switchLanguage(savedLang);
-}
-
-// Shop filter tabs
-const filterBar = document.getElementById('shopFilterBar');
-if (filterBar) {
-  filterBar.addEventListener('click', function(e) {
-    const tab = e.target.closest('.shop-filter-tab');
-    if (!tab) return;
-    // Update active tab
-    filterBar.querySelectorAll('.shop-filter-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    const filter = tab.dataset.filter;
-    // Filter product rows and coming-soon cards
-    document.querySelectorAll('.product-row[data-category], .coming-card[data-category]').forEach(item => {
-      const cats = (item.dataset.category || '').split(' ');
-      if (filter === 'all' || cats.includes(filter)) {
-        item.style.display = '';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
-}
-
-// Notify Me buttons
-function handleNotify(btn) {
-  const isZh = currentLang === 'zh';
-  btn.classList.add('notified');
-  btn.textContent = isZh ? '已订阅 ✓' : 'Notified ✓';
-  btn.disabled = true;
-  btn.style.opacity = '0.85';
-}
-
-// Buy Now — call /api/create-checkout
-async function handleBuyNow(productId, event) {
-  event.preventDefault();
-  const btn = event.currentTarget;
-  const originalText = btn.textContent;
-  const isZh = currentLang === 'zh';
-  btn.textContent = isZh ? '处理中...' : 'Processing...';
-  btn.style.pointerEvents = 'none';
-
-  try {
-    const resp = await fetch('/api/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId: productId, lang: currentLang }),
-    });
-    const data = await resp.json();
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      throw new Error(data.error || 'Unknown error');
-    }
-  } catch (err) {
-    alert(isZh ? '支付请求失败，请稍后重试。' : 'Payment request failed. Please try again.');
-    btn.textContent = originalText;
-    btn.style.pointerEvents = '';
-  }
-}
 </script>
 
 </body>
