@@ -12,7 +12,8 @@ const products = productsConfig.products;
 const emailConfig = productsConfig.email;
 
 // 初始化产品路径
-productsConfig.init(__dirname);
+// Vercel Serverless 中 __dirname 指向 /api，需要往上一级才是项目根目录
+productsConfig.init(path.join(__dirname, ".."));
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
