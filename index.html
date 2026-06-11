@@ -797,6 +797,168 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 .animate-delay-2 { animation-delay: 0.25s; }
 .animate-delay-3 { animation-delay: 0.4s; }
 .animate-delay-4 { animation-delay: 0.55s; }
+
+/* =========================================
+   PAYMENT MODAL
+   ========================================= */
+.payment-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(26,26,26,0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 999;
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 1.5rem;
+}
+.payment-modal-overlay.active {
+  display: flex;
+}
+.payment-modal {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem 2.5rem 2rem;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(71,51,47,0.2);
+  animation: modalSlideUp 0.35s ease;
+}
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.payment-modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none; border: none;
+  font-family: var(--font-sans);
+  font-size: 1.3rem; color: var(--light);
+  cursor: pointer;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+.payment-modal-close:hover {
+  background: var(--bg-warm);
+  color: var(--black);
+}
+.payment-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem; font-weight: 400;
+  color: var(--black);
+  margin-bottom: 0.35rem;
+  text-align: center;
+}
+.payment-modal-product {
+  font-family: var(--font-sans);
+  font-size: 0.7rem; color: var(--light);
+  text-transform: uppercase; letter-spacing: 0.14em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.payment-modal-options {
+  display: flex;
+  align-items: center; justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.payment-option {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.payment-option:hover {
+  border-color: var(--accent-avocado);
+  background: var(--bg-warm);
+}
+.payment-qr-code {
+  width: 150px; height: 150px;
+  border-radius: 8px;
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.payment-qr-code img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+.qr-loading {
+  font-family: var(--font-sans);
+  font-size: 0.65rem; color: var(--light);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.payment-option-label {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--black);
+}
+.payment-option-hint {
+  font-family: var(--font-sans);
+  font-size: 0.65rem; color: var(--light);
+  margin-top: -.25rem;
+}
+.payment-or-divider {
+  font-family: var(--font-serif);
+  font-size: 0.8rem; color: var(--pale);
+  font-style: italic;
+  flex-shrink: 0;
+}
+.payment-card-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent-deep);
+}
+.payment-btn-card {
+  font-family: var(--font-sans);
+  font-size: 0.7rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 0.55rem 1.5rem;
+  border: 1px solid var(--black);
+  background: var(--black);
+  color: var(--white);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.payment-btn-card:hover {
+  background: var(--white);
+  color: var(--black);
+}
+.payment-copy-link {
+  font-family: var(--font-sans);
+  font-size: 0.65rem; color: var(--light);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  cursor: pointer;
+  background: none; border: none;
+  transition: color 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+.payment-copy-link:hover {
+  color: var(--accent);
+}
+@media (max-width: 500px) {
+  .payment-modal {
+    padding: 2rem 1.25rem;
+  }
+  .payment-modal-options {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .payment-qr-code {
+    width: 130px; height: 130px;
+  }
+}
 </style>
 </head>
 <body>
@@ -1064,6 +1226,36 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 </footer>
 
 <!-- =========================================
+     PAYMENT MODAL
+     ========================================= -->
+<div class="payment-modal-overlay" id="paymentModal">
+  <div class="payment-modal">
+    <button class="payment-modal-close" id="modalClose">&times;</button>
+    <h3 class="payment-modal-title">Choose Payment Method</h3>
+    <p class="payment-modal-product" id="modalProductName"></p>
+    <div class="payment-modal-options">
+      <div class="payment-option">
+        <div class="payment-qr-code" id="qrCodeContainer">
+          <span class="qr-loading">Loading QR...</span>
+        </div>
+        <p class="payment-option-label">Scan to Pay</p>
+        <p class="payment-option-hint">Use your phone camera</p>
+      </div>
+      <span class="payment-or-divider">or</span>
+      <div class="payment-option" id="cardOption">
+        <svg class="payment-card-icon" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+          <line x1="1" y1="9" x2="23" y2="9"/>
+        </svg>
+        <p class="payment-option-label">Pay with Card</p>
+        <button class="payment-btn-card" id="modalCardPay">Pay Now</button>
+      </div>
+    </div>
+    <button class="payment-copy-link" id="modalCopyLink">Copy payment link</button>
+  </div>
+</div>
+
+<!-- =========================================
      SCRIPTS
      ========================================= -->
 <script>
@@ -1124,15 +1316,15 @@ async function handleBuyNow(productId, event) {
     });
     const data = await resp.json();
     if (data.url) {
-      window.location.href = data.url;
+      showPaymentModal(data.url, productId);
     } else {
       throw new Error(data.error || 'Unknown error');
     }
   } catch (err) {
     alert('Payment request failed. Please try again.');
-    btn.innerHTML = originalHTML;
-    btn.style.pointerEvents = '';
   }
+  btn.innerHTML = originalHTML;
+  btn.style.pointerEvents = '';
 }
 
 // Attach Buy Now handlers
@@ -1151,6 +1343,76 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   const mailto = `mailto:wholesomeauraworkshop@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\n\u2014 ' + name + ' (' + email + ')')}`;
   window.location.href = mailto;
   this.reset();
+});
+
+// =========================================
+// PAYMENT MODAL LOGIC
+// =========================================
+let currentCheckoutUrl = '';
+
+const productNames = {
+  'healthy-hazards': 'Health Hazards / Why Your Cats Might Tweak Your Brain And Behavior?',
+  'tai-chi-diagram': 'Brainwaves / The Origin And Evolution Of The Tai Chi Diagram'
+};
+
+function showPaymentModal(checkoutUrl, productId) {
+  currentCheckoutUrl = checkoutUrl;
+  document.getElementById('modalProductName').textContent = productNames[productId] || '';
+
+  // Generate QR code
+  var qrContainer = document.getElementById('qrCodeContainer');
+  qrContainer.innerHTML = '<span class="qr-loading">Loading QR...</span>';
+  var qrImg = document.createElement('img');
+  qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(checkoutUrl) + '&bgcolor=fafaf7&color=47332f';
+  qrImg.onload = function() {
+    qrContainer.innerHTML = '';
+    qrContainer.appendChild(qrImg);
+  };
+  qrImg.onerror = function() {
+    qrContainer.innerHTML = '<span class="qr-loading">QR unavailable<br><small>Use card option</small></span>';
+  };
+
+  // Show modal
+  document.getElementById('paymentModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePaymentModal() {
+  document.getElementById('paymentModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Modal close: X button
+document.getElementById('modalClose').addEventListener('click', closePaymentModal);
+
+// Modal close: click overlay background
+document.getElementById('paymentModal').addEventListener('click', function(e) {
+  if (e.target === this) closePaymentModal();
+});
+
+// Modal close: ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closePaymentModal(); }
+});
+
+// Card pay button
+document.getElementById('modalCardPay').addEventListener('click', function(e) {
+  e.stopPropagation();
+  if (currentCheckoutUrl) { window.location.href = currentCheckoutUrl; }
+});
+
+// Copy payment link
+document.getElementById('modalCopyLink').addEventListener('click', function() {
+  if (!currentCheckoutUrl) return;
+  navigator.clipboard.writeText(currentCheckoutUrl).then(function() {
+    var btn = document.getElementById('modalCopyLink');
+    var orig = btn.textContent;
+    btn.textContent = 'Link Copied!';
+    btn.style.color = '#9bbf8b';
+    setTimeout(function() { btn.textContent = orig; btn.style.color = ''; }, 2000);
+  }).catch(function() {
+    prompt('Copy this link to pay:', currentCheckoutUrl);
+  });
 });
 </script>
 
