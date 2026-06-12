@@ -31,12 +31,20 @@ function readAttachment(filePath, filename) {
   };
 }
 
-// 读取原始请求体（Vercel 默认会解析 JSON，但 Stripe 签名验证需要原始字符串）
+// 读取原始请求体（Vercel 环境下 req.body 可能已预解析，需要兼容处理）
 async function readRawBody(req) {
+  // 如果 Vercel 已经提供了 body 对象，转回 JSON 字符串用于签名验证
+  if (req.body && typeof req.body === "object") {
+    return JSON.stringify(req.body);
+  }
+  // 否则从流中读取原始字节
   return new Promise((resolve, reject) => {
     const chunks = [];
     req.on("data", (chunk) => chunks.push(chunk));
-    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+    req.on("end", () => {
+      const raw = Buffer.concat(chunks).toString("utf8");
+      resolve(raw);
+    });
     req.on("error", reject);
   });
 }

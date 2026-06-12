@@ -56,7 +56,7 @@ module.exports = {
 
   // Resend 邮件模板（带附件）
   email: {
-    from: "WholesomeAura <onboarding@resend.dev>",  // Resend 验证域名后改为品牌邮箱
+    from: "WholesomeAuraWorkshop <shop@wholesomeauraworkshop.com>",
     subject: "Your WholesomeAuraWorkshop Digital Product",
 
     bodyTemplate(productName) {
