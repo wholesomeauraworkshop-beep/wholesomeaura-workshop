@@ -746,7 +746,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   background: var(--white);
   border-radius: 16px;
   padding: 2.5rem 2.5rem 2rem;
-  max-width: 500px;
+  max-width: 760px;
   width: 100%;
   position: relative;
   box-shadow: 0 20px 60px rgba(71,51,47,0.2);
@@ -788,28 +788,29 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   text-align: center;
 }
 .payment-modal-options {
-  display: flex;
-  align-items: center; justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 0.5rem;
 }
 .payment-option {
-  flex: 1;
   display: flex; flex-direction: column; align-items: center;
+  justify-content: center;
   gap: 0.75rem;
-  padding: 1.25rem 1rem;
+  padding: 1.5rem 1rem;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--bg);
   transition: all 0.3s ease;
   cursor: default;
+  min-height: 240px;
 }
 .payment-option:hover {
   border-color: var(--accent-avocado);
   background: var(--bg-warm);
 }
 .payment-qr-code {
-  width: 150px; height: 150px;
+  width: 120px; height: 120px;
   border-radius: 8px;
   background: var(--white);
   display: flex; align-items: center; justify-content: center;
@@ -834,14 +835,8 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   font-size: 0.65rem; color: var(--light);
   margin-top: -.25rem;
 }
-.payment-or-divider {
-  font-family: var(--font-serif);
-  font-size: 0.8rem; color: var(--pale);
-  font-style: italic;
-  flex-shrink: 0;
-}
-.payment-card-icon {
-  width: 40px; height: 40px;
+.payment-option-icon {
+  width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
   color: var(--accent-deep);
 }
@@ -861,29 +856,41 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   background: var(--white);
   color: var(--black);
 }
-.payment-copy-link {
+.payment-btn-link {
   font-family: var(--font-sans);
-  font-size: 0.65rem; color: var(--light);
+  font-size: 0.7rem; font-weight: 500;
   text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 0.55rem 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--dark);
   cursor: pointer;
-  background: none; border: none;
-  transition: color 0.3s ease;
-  display: block;
-  margin: 0 auto;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
-.payment-copy-link:hover {
-  color: var(--accent);
+.payment-btn-link:hover {
+  background: var(--bg-warm);
+  border-color: var(--accent);
+  color: var(--accent-deep);
+}
+.payment-btn-link.copied {
+  color: var(--accent-avocado);
+  border-color: var(--accent-avocado);
 }
 @media (max-width: 500px) {
   .payment-modal {
     padding: 2rem 1.25rem;
   }
   .payment-modal-options {
-    flex-direction: column;
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .payment-option {
+    min-height: auto;
+    padding: 1.25rem 1rem;
   }
   .payment-qr-code {
-    width: 130px; height: 130px;
+    width: 100px; height: 100px;
   }
 }
 </style>
@@ -1135,17 +1142,23 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
         <p class="payment-option-label">Scan to Pay</p>
         <p class="payment-option-hint">Use your phone camera</p>
       </div>
-      <span class="payment-or-divider">or</span>
       <div class="payment-option" id="cardOption">
-        <svg class="payment-card-icon" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2">
+        <svg class="payment-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
           <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
           <line x1="1" y1="9" x2="23" y2="9"/>
         </svg>
         <p class="payment-option-label">Pay with Card</p>
         <button class="payment-btn-card" id="modalCardPay">Pay Now</button>
       </div>
+      <div class="payment-option">
+        <svg class="payment-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        </svg>
+        <p class="payment-option-label">Copy Link</p>
+        <button class="payment-btn-link" id="modalCopyLink">Copy Link</button>
+      </div>
     </div>
-    <button class="payment-copy-link" id="modalCopyLink">Copy payment link</button>
   </div>
 </div>
 
@@ -1302,8 +1315,8 @@ document.getElementById('modalCopyLink').addEventListener('click', function() {
     var btn = document.getElementById('modalCopyLink');
     var orig = btn.textContent;
     btn.textContent = 'Link Copied!';
-    btn.style.color = '#9bbf8b';
-    setTimeout(function() { btn.textContent = orig; btn.style.color = ''; }, 2000);
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
   }).catch(function() {
     prompt('Copy this link to pay:', currentCheckoutUrl);
   });
