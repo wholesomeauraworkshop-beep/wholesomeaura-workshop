@@ -322,31 +322,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   box-shadow: 0 8px 40px rgba(71,51,47,0.1);
 }
 
-.about-text .stat-row {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-}
-
-.stat {
-  text-align: left;
-}
-.stat-number {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  color: var(--black);
-  line-height: 1;
-}
-.stat-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--light);
-  margin-top: 0.4rem;
-}
-
 /* =========================================
    SHOP / PRODUCT ROW
    ========================================= */
@@ -532,47 +507,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
 }
 
 /* =========================================
-   FEATURED SECTION (Recipe)
-   ========================================= */
-.featured-banner {
-  background: linear-gradient(135deg, var(--bg-beige) 0%, var(--bg-terracotta) 100%);
-  border-radius: 12px;
-  padding: 5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.featured-image {
-  aspect-ratio: 3/2;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 8px 40px rgba(71,51,47,0.12);
-}
-
-.featured-content h2 {
-  margin-bottom: 1rem;
-}
-
-.recipe-preview {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-style: italic;
-  color: var(--accent-deep);
-  line-height: 1.7;
-  margin: 1.5rem 0;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--accent-terracotta);
-  border-bottom: 1px solid var(--accent-terracotta);
-}
-
-/* =========================================
    PHILOSOPHY
    ========================================= */
 .philosophy-block {
@@ -716,12 +650,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   .product-row:nth-child(even) .product-row-image {
     order: -1;
   }
-  .featured-banner {
-    grid-template-columns: 1fr;
-    padding: 3rem 2rem;
-    gap: 2rem;
-    border-radius: 8px;
-  }
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -770,7 +698,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
     display: block;
   }
   .hero-texture { display: none; }
-  .featured-banner { padding: 2rem 1.5rem; border-radius: 12px; }
   .footer-inner { flex-direction: column; text-align: center; }
 }
 
@@ -1007,32 +934,24 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
   <div class="container">
     <div class="about-grid">
       <div class="about-image">
-        <img src="images/avatar.png" alt="Aura Wong" style="width:100%;height:100%;object-fit:cover;">
+        <img src="images/avatar-new.png" alt="Aura Wong" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="about-text">
         <p class="eyebrow">About</p>
         <h2>From finance to healing.<br>From hustle to harmony.</h2>
         <div class="divider"></div>
         <p class="body-large">
-          Over a decade in the financial industry&mdash;as an investment banking executive in Singapore and a corporate banking executive in China&mdash;analyzing risks, chasing returns, and navigating the high-stakes world of capital markets.
+          I spent over a decade in the financial industry, as an investment banking executive in Singapore and a corporate banking executive in China&mdash;analyzing risks, chasing returns, and operating under pressure.
         </p>
         <p class="body-large" style="margin-top:1rem;">
-          A personal health journey led me to Traditional Chinese Medicine, where I discovered a deeper way of understanding the body, mind, and the world around us. Now an undergraduate student of TCM, I write about health, wellness, and the questions that keep me curious.
+          Then a personal health journey led me to Traditional Chinese Medicine.
         </p>
-        <div class="stat-row">
-          <div class="stat">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Years in Finance</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">2</div>
-            <div class="stat-label">Countries</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">TCM</div>
-            <div class="stat-label">Now Studying</div>
-          </div>
-        </div>
+        <p class="body-large" style="margin-top:1rem;">
+          It didn't just heal me. It reoriented me. The ancient oriental wisdom attracts me. I start thinking and writing on health, wellness and other interests of my life.
+        </p>
+        <p class="body-large" style="margin-top:1rem;">
+          WholesomeAuraWorkshop is where I publish short e-books, narrative stories, and commentaries on health and wellness issues and interesting topics concerning relationship and harmony&mdash;no hype, no dogmas. Just clarity for the curious.
+        </p>
       </div>
     </div>
   </div>
@@ -1098,7 +1017,7 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
             <div class="price-bar-label">Price</div>
             <div class="price-bar-amount">Free</div>
           </div>
-          <a href="#recipe" class="price-bar-cta">View Recipe &rarr;</a>
+          <a href="public/products/Stewed%20Duck%20with%20Astragalus%20and%20Black%20Fungus.png" class="price-bar-cta" download>View Recipe &rarr;</a>
         </div>
       </div>
       <div class="product-row-image">
@@ -1106,31 +1025,6 @@ h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 500; }
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- =========================================
-     FEATURED RECIPE
-     ========================================= -->
-<section class="section-sm" id="recipe">
-  <div class="container">
-    <div class="featured-banner">
-      <div class="featured-image">
-        <img src="images/product-recipe.png" alt="Lotus Flower" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div class="featured-content">
-        <p class="eyebrow">Featured Recipe</p>
-        <h2>Stewed Duck with Astragalus and Black Fungus</h2>
-        <div class="recipe-preview">
-          Duck &bull; Astragalus &bull; Black Fungus<br>
-          Finished with a ginger-salt touch
-        </div>
-        <p class="body-large" style="margin-bottom:1.5rem;">Try this light summer stew combining duck, astragalus, and black fungus. Nourishing and refreshing with gentle ginger and salt touch.</p>
-        <p style="color:var(--light); font-size:0.85rem;">
-          Full recipe delivered to your inbox. Reach out at <a href="mailto:wholesomeauraworkshop@gmail.com" style="color:var(--accent);">wholesomeauraworkshop@gmail.com</a>
-        </p>
-      </div>
-    </div>
   </div>
 </section>
 
