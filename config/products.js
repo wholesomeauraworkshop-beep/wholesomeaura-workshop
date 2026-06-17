@@ -12,7 +12,7 @@ module.exports = {
       id: "healthy-hazards",
       name: "Why Your Cats Might Tweak Your Brain And Behavior?",
       description: "That sudden road rage? It could be Toxoplasma gondii — a parasite from your cat.",
-      price: 199,        // 单位：分（USD），1.99 USD = 199
+      price: 500,        // 单位：分（USD），5.00 USD = 500
       currency: "usd",
       // 产品附件（放在 public/products/ 目录下，支持 PDF/PNG/JPG 等）
       file: "Why Your Cats Might Tweak Your Brain and Behavior.pdf",
@@ -24,7 +24,7 @@ module.exports = {
       id: "tai-chi-diagram",
       name: "The Origin And Evolution Of The Tai Chi Diagram",
       description: "Questioning accepted truths, seeking hidden origins — from ancient symbols to Earth's deep past.",
-      price: 199,
+      price: 500,
       currency: "usd",
       file: "The Origin and Evolution of the Tai Chi Diagram.pdf",
       filePath: null,
